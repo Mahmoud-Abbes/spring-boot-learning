@@ -1,6 +1,7 @@
 package com.learning.springfundamentals.controller;
 
 import com.learning.springfundamentals.model.SoftwareEngineer;
+import com.learning.springfundamentals.repository.SoftwareEngineerRepository;
 import com.learning.springfundamentals.service.SoftwareEngineerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +17,14 @@ public class SoftwareEngineerController {
         this.service = service;
     }
 
-
     @GetMapping
     List<SoftwareEngineer> getEngineers(){
         return service.getAllEngineers();
+    }
+
+    @GetMapping("{id}")
+    SoftwareEngineer getEngineerById(@PathVariable Integer id){
+        return service.getEngineerById(id);
     }
 
     @PostMapping

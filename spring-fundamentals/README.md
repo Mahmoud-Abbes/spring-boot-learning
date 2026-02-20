@@ -12,3 +12,11 @@
     - **Model Layer**: Defines the data structure (POJO).
 - **Object Equality**: Overriding `.equals()` and `.hashCode()` to ensure `List.remove()` and other collections identify objects by ID rather than memory address.
 - **Constructor Injection**: Using the constructor to inject the Service into the Controller for better dependency management.
+- **Docker & Containerization**:
+  - **Images**: Read-only blueprints containing the application and its environment.
+  - **Containers**: Live, runnable instances of an image.
+  - **Docker Compose**: Orchestrated a PostgreSQL environment using `docker-compose.yml` for local development.
+- **Spring Data JPA & Hibernate**:
+  - Implemented persistence using the **Repository Pattern** to abstract database operations.
+  - Used Hibernate as the JPA implementation to map Java Objects to PostgreSQL tables.
+  - Configured `application.yml` for seamless connection between the Spring app and the Dockerized DB.
