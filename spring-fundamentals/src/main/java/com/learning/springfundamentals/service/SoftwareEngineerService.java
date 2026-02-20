@@ -1,46 +1,45 @@
 package com.learning.springfundamentals.service;
 
 import com.learning.springfundamentals.model.SoftwareEngineer;
+import com.learning.springfundamentals.repository.SoftwareEngineerRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class SoftwareEngineerService {
 
-    private final List<SoftwareEngineer> engineers = new ArrayList<>();
+    private final SoftwareEngineerRepository softwareEngineerRepository;
 
-    public SoftwareEngineerService() {
-        engineers.add(new SoftwareEngineer(1, "James", "angular, spring boot, CSS"));
-        engineers.add(new SoftwareEngineer(2, "Alex", "react, node.js, tailwindCSS"));
+    public SoftwareEngineerService(SoftwareEngineerRepository softwareEngineerRepository) {
+        this.softwareEngineerRepository = softwareEngineerRepository;
     }
 
     public List<SoftwareEngineer> getAllEngineers() {
-        return engineers;
+        return softwareEngineerRepository.findAll();
     }
 
     public void addEngineer(SoftwareEngineer engineerParam) {
         if (engineerParam != null) {
-            engineers.add(engineerParam);
+            softwareEngineerRepository.save(engineerParam);
         }
     }
 
     public void updateEngineer(SoftwareEngineer engineerParam) {
-        if (engineerParam != null) {
-            for (int i = 0; i < engineers.size(); i++) {
-                if (Objects.equals(engineers.get(i).getId(), engineerParam.getId())) {
-                    engineers.set(i, engineerParam);
-                }
-            }
+        // Make sure to not add element if not present
+        if (softwareEngineerRepository.findById(engineerParam.getId()).isPresent()){
+            softwareEngineerRepository.save(engineerParam);
         }
     }
 
     public void removeEngineer(SoftwareEngineer engineerParam) {
         if (engineerParam != null) {
             // Equals overridden therefor the remove method will work
-            engineers.remove(engineerParam);
+            softwareEngineerRepository.deleteById(engineerParam.getId());
         }
+    }
+
+    public SoftwareEngineer getEngineerById(Integer id){
+        return softwareEngineerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Could not find id: "+ id));
     }
 }
