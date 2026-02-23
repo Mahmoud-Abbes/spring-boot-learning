@@ -20,3 +20,6 @@
   - Implemented persistence using the **Repository Pattern** to abstract database operations.
   - Used Hibernate as the JPA implementation to map Java Objects to PostgreSQL tables.
   - Configured `application.yml` for seamless connection between the Spring app and the Dockerized DB.
+- **CORS Configuration**: Enabled @CrossOrigin to allow the Angular frontend to securely communicate with the Spring Boot API.
+
+- **Data Persistence:** Configured Docker volumes and Hibernate ddl-auto: update to ensure data survives container and application restarts.
