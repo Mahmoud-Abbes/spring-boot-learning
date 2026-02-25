@@ -29,13 +29,13 @@ public class SoftwareEngineerController {
     }
 
     @PostMapping
-    void addEngineer(@RequestBody SoftwareEngineer engineer){
-        service.addEngineer(engineer);
+    SoftwareEngineer addEngineer(@RequestBody SoftwareEngineer engineer){
+        return service.addEngineer(engineer);
     }
 
-    @DeleteMapping
-    void deleteEngineer(@RequestBody SoftwareEngineer engineer){
-        service.removeEngineer(engineer);
+    @DeleteMapping("{id}")
+    void deleteEngineer(@PathVariable Integer id){
+        service.removeEngineer(id);
     }
 
     @PutMapping

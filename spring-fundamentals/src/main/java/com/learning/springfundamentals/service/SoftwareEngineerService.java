@@ -19,10 +19,8 @@ public class SoftwareEngineerService {
         return softwareEngineerRepository.findAll();
     }
 
-    public void addEngineer(SoftwareEngineer engineerParam) {
-        if (engineerParam != null) {
-            softwareEngineerRepository.save(engineerParam);
-        }
+    public SoftwareEngineer addEngineer(SoftwareEngineer engineerParam) {
+        return softwareEngineerRepository.save(engineerParam);
     }
 
     public void updateEngineer(SoftwareEngineer engineerParam) {
@@ -32,11 +30,8 @@ public class SoftwareEngineerService {
         }
     }
 
-    public void removeEngineer(SoftwareEngineer engineerParam) {
-        if (engineerParam != null) {
-            // Equals overridden therefor the remove method will work
-            softwareEngineerRepository.deleteById(engineerParam.getId());
-        }
+    public void removeEngineer(Integer id) {
+            softwareEngineerRepository.deleteById(id);
     }
 
     public SoftwareEngineer getEngineerById(Integer id){
